@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+<body>
+
+<div class="header">
+  <a href="#default" class="logo">Catalog App</a>
+  <div class="header-right">
+    <br/>
+ 
+    <a class="active" href="{{url_for('start')}}">Login</a>
+   
+  </div>
+</div>
+<br/>
+<br/>
+
+<table id="big" style='width: 100%'>
+ <tr>
+  <td></td>
+  </tr>
+ <tr>
+  <td style='width: 75px'>
+    <table style='width: 100%'>
+     <tr>
+      <td style='width: 12%'></td>
+      <div  class="center">
+	  <h1>New Item</h1>
+
+<form action="#" method = 'post'>
+
+
+	<p>Name:</p>
+		<input type ='text' size='30' name='name'>
+	<p>Description:</p>
+		<input type ='text' size='30' name='description'>
+	<p>Price:</p>
+		<input type ='text' size='30' name='price'>
+	<p>material:<p>
+		<input type ='radio'  name='material' value ='plastic'>plastic</br>
+		<input type ='radio'  name='material' value ='metal'>metal</br>
+		<input type ='radio' name='material' value ='wood'>wood</br>
+		<input type ='radio'  name='material' value ='cloth'>cloth</br>
+		<input type ='radio'  name='material' value ='other'>other</br>
+	</br>
+
+
+<input type='submit' value='Create'>
+
+</form>
+
+      <td style='width: 76%'>  
+      </div>    
+      </td>
+      <td style='width: 12%'></td>
+     </tr>
+    </table>
+  </td>
+ 
+ </tr>
+</table>
+
+</body>
+</html>

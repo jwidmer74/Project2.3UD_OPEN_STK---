@@ -1,0 +1,5 @@
+run
+vagrant@vagrant:/vagrant/catalog$ python database_setup2.py
+
+run
+vagrant@vagrant:/vagrant/catalog$ python lotsofitems.py

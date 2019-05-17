@@ -1,0 +1,92 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+<body>
+<div class="header">
+  <a href="#default" class="logo">Catalog App</a>
+  <div class="header-right">
+    <br/>
+ 
+    <a class="active" href="#Login">Login</a>
+   
+  </div>
+</div>
+<br/>
+<br/>
+
+<table id="big" style='width: 100%'>
+ <tr>
+  <td></td>
+  </tr>
+ <tr>
+  <td style='width: 75px'>
+    <table style='width: 100%'>
+     <tr>
+      <td style='width: 12%'></td>
+      <div  class="center">
+	  <h1> Edit Item </h1>
+
+<form action="#" method = 'post'>
+
+
+	<p>Name:</p>
+		<input type ='text' size='30' name='name' placeholder = '{{item.name }}'>
+	<p>Description:</p>
+		<input type ='text' size='30' name='description' placeholder = '{{item.description}}'>
+	<p>Price:</p>
+		<input type ='text' size='30' name='price' placeholder = '{{item.price}}'>
+	<p>material:<p>
+
+	{% if item.material == 'net' %}
+		<dd><input type ='radio' name='material' value='net'checked >net</dd>
+	{%else%}
+	<dd><input type ='radio' name='material' value='net' >net</dd>
+    {% endif %}
+
+    {% if item.material == 'backboard' %}
+       <dd><input type ='radio' name='material' value='backboard' checked>backboard</dd>
+
+    {%else%}
+		<dd><input type ='radio' name='material' value='backboard'>backboard</dd>
+    {% endif %}
+
+	{% if item.material == 'stick'%}
+		<dd><input type ='radio' name='material' value='stick'checked >stick</dd>
+
+	{% else %}
+	   <dd><input type ='radio' name='material' value='stick'>stick</dd>
+
+	{% endif %}
+
+
+	{%if item.material =='Googles'%}
+		<dd><input type ='radio' name='material' value='Googles'checked >Googles</dd>
+	{% else %}
+		<dd><input type ='radio' name='material' value='Googles'>Googles</dd>
+	{% endif %}
+
+
+
+<input type='submit' value='Edit'>
+
+
+<a href = '#'> Cancel </a>
+
+
+</form>
+      <td style='width: 76%'>  
+      </div>    
+      </td>
+      <td style='width: 12%'></td>
+     </tr>
+    </table>
+  </td>
+ 
+ </tr>
+</table>
+
+</body>
+</html>

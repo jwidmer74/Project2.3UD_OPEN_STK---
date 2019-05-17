@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+<body>
+<div class="header">
+  <a href="#default" class="logo">Catalog App</a>
+ 
+  <div class="header-right">
+    <br/>
+ 
+    <a class="active" href="#Login">Login</a>
+   
+  </div>
+</div>
+<br/>
+<br/>
+
+<table id="big" style='width: 100%'>
+ <tr>
+ <td width= 12%></td><br/>
+  <td class="rightPanel">      <div><h2>Categories</h2>
+   
+
+
+
+{% for category in categories %}
+
+
+
+<a href = "{{url_for('showMenu', category_id = category.id)}}"> <p>{{category.name}}</p></a>
+
+
+
+
+
+{% endfor %}
+      </td> 
+      <td><br/>
+  <td class="leftPanel" ><h2>Latest Items</h2>
+  
+  {% for item in latestItems%}
+  <p>{{item.name}}</p>
+  {% endfor %}
+  </td><td width=12%>
+  
+  </td>
+
+
+      </div>
+  </tr>
+
+
+</body>
+</html>
