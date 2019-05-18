@@ -284,7 +284,7 @@ def gconnect():
   flash("you are now logged in as %s" % login_session['username'])
   print "done!"
   return output
-
+ 
 # Delete a menu item
 
 
