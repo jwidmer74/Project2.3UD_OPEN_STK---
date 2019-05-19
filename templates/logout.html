@@ -21,7 +21,7 @@
   <div class="header-right">
     <br/>
  
-    <a class="active" href="{{url_for('login')}}">Login</a>
+
    
   </div>
 </div>
@@ -30,10 +30,13 @@
 
 <table id="big" style='width: 100%'>
  <tr>
- <td width= 12%></td><br/>
-  <td class="rightPanel">      <div>
+ <td width= 33%></td><br/>
+  <td>      <div>
 
-
+  </div>
+</div>
+<br/>
+<br/>Logging out
     <!-- start Google Start Login -->
     <script>
       function init() {
@@ -44,7 +47,7 @@
           setTimeout(function(){
             gauth2.signOut().then(function () {
               console.log('User signed out.');
-              window.location.href = '/signin';
+              window.location.href = '/category';
             });
 
           }, 2000);
@@ -63,9 +66,13 @@
 
     <!-- start Facebook End Login -->
 
+ </td>
+	<td>
+	</td>
+
+      </div>
+  </tr>
 
 
-  </div>
 </body>
-
 </html>

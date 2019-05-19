@@ -1,13 +1,9 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, abort, g,make_response
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.sql import func
-from sqlalchemy.orm import sessionmaker,relationship
-from sqlalchemy.sql import select
-from database_setup2 import Base,Category,Item,User
-from flask.ext.httpauth import HTTPBasicAuth
-import json
-from oauth2client.client import flow_from_clientsecrets
+from flask import Flask, render_template, request, redirect,\
+                 jsonify, url_for, flash
+import uuid
+from flask import session as login_session
+
+from oauth2client.client import flow_from_clientsecrets, verify_id_token
 from oauth2client.client import FlowExchangeError
 
 import os
@@ -33,7 +29,7 @@ print(CLIENT_ID)
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine("sqlite:///catalog.db?check_same_thread=False")
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -71,7 +67,7 @@ def showAuthCategories():
     
     #latestItems = conn.execute(select([Item.name])).scalar()
     latestItems = session.query((select([Item.name]).order_by((Item.name).desc()).limit(10))).all()
-    return render_template('categoryauth.html',latestItems=latestItems,categories=categories)	
+    return render_template('categoriesAuth.html',latestItems=latestItems,categories=categories)	
 
 # Show all categories
 @app.route('/')
@@ -82,7 +78,7 @@ def showCategories():
     
     #latestItems = conn.execute(select([Item.name])).scalar()
     latestItems = session.query((select([Item.name]).order_by((Item.name).desc()).limit(10))).all()
-    return render_template('categories.html',latestItems=latestItems,categories=categories)
+    return render_template('categories.html',latestItems=latestItems,categories=categories,login_session=login_session)
 
 # Create a new category
 @app.route('/categoryauth/new/', methods=['GET', 'POST'])
@@ -148,11 +144,7 @@ def showMenu(category_id):
     # return 'This page is the menu for category %s' % category_id
 
 	# Create a new menu item
-def showMenuAuth(category_id):
-    category = session.query(Category).filter_by(id=category_id).one()
-    items = session.query(Item).filter_by(category_id=category_id).all()
-    return render_template('menuAuth.html', items=items, category=category)
-    # return 'This page is the menu for category %s' % category_id
+
 @app.route('/categoryauth/<int:category_id>/menu/new/', methods=['GET', 'POST'])
 def newItem(category_id):
     if request.method == 'POST':
@@ -201,7 +193,8 @@ def login():
 @app.route('/logout')
 def logout():
   print(type(login_session))
-  del login_session["username"]
+  if "username" in login_session:
+      del login_session["username"]
   return render_template('logout.html')
 
 
@@ -292,7 +285,7 @@ def gconnect():
   flash("you are now logged in as %s" % login_session['username'])
   print "done!"
   return output
-
+ 
 # Delete a menu item
 
 

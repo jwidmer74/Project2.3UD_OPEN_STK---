@@ -1,14 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-	</head>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-
+  <!--google -->
+  <script src="//apis.google.com/js/platform.js?onload=init" async defer></script>`
+<!--
+  <meta name="google-signin-client_id"
+    content="759306340031-p8a40fq9t90jfrhiqpe72t8r2v01s8rl.apps.googleusercontent.com">
+-->
+</head>
 <body>
-
 <div class="header">
   <a href="#default" class="logo">Catalog App</a>
+ 
   <div class="header-right">
     <br/>
  
@@ -21,167 +30,305 @@
 
 <table id="big" style='width: 100%'>
  <tr>
-  <td></td>
-  </tr>
- <tr>
-  <td style='width: 75px'>
-    <table style='width: 100%'>
-     <tr>
-      <td style='width: 12%'></td>
-      <div  class="center">
-		<h1>{{ category.name }}</h1>
-		
+ <td width= 12%></td><br/>
+  <td class="rightPanel">      <div>
+
+
+<br/>
+<!--
 		{% with messages = get_flashed_messages() %}
+
       {% if messages %}
+
           
+
         <ul>
+
         {% for message in messages %}
+
             <li> <strong> {{ message }} </strong> </li>
+
         {% endfor %}
+
         </ul>
+
         {% endif %}
+
     {% endwith %}
+	-->
+<br/>
+		<h1>{{ category.name }}</h1>
+		</br>
+		
+		items categorized by materials below
+
+		
+
+
+
+
 
     {% if items !=[] %}
 
 
+
+
+
 	</br></br>
+
+
 
 	<h2>Wooden</h2>
 
+
+
 		{% for i in items %}
+
 		{% if i.material == 'wooden' %}
 
+
+
 		<p>{{i.name}}</p>
+
 	
+
+
 
 		<p>{{i.description}}</p>
+
 	
+
+
 
 		<p>{{i.price}}</p>
+
 	
 
+
+
 </br>
+
 </br>
+
 		{% endif %}
+
+
 
 		{% endfor %}
 
+
+
 		
 
+
+
 		</br></br>
+
+
 
 	<h2>Plastic</h2>
 
+
+
 		{% for i in items %}
-		{% if i.material == 'plastic' %}
+
+		{% if i.material == 'Plastic' %}
+
+
 
 		<p>{{i.name}}</p>
+
 	
 
+
+
 		<p>{{i.description}}</p>
+
 	
+
+
 
 		<p>{{i.price}}</p>
 
+	
+
+
+
 </br>
+
 </br>
+
         {% endif %}
 
+
+
 		{% endfor %}
-		
+
 		
 
+		
+
+
+
 		</br></br>
+
+
 
 	<h2>Metal</h2>
 
+
+
 		{% for i in items %}
+
 		{% if i.material == 'metal' %}
 
+
+
 		<p>{{i.name}}</p>
+
 	
+
+
 
 		<p>{{i.description}}</p>
+
 	
+
+
 
 		<p>{{i.price}}</p>
+
 	
 
+
+
 </br>
+
 </br>
+
 		{% endif %}
 
+
+
 		{% endfor %}
+
 		
+
 		
+
+
 
 		</br></br>
 
-		<h2>Rubber</h2>
+
+
+			<h2>Rubber</h2>
+
+
 
 		{% for i in items %}
+
 		{% if i.material == 'rubber' %}
 
+
+
 		<p>{{i.name}}</p>
+
 	
+
+
 
 		<p>{{i.description}}</p>
+
 	
+
+
 
 		<p>{{i.price}}</p>
+
 	
 
+
 </br>
+
 </br>
+
 		{% endif %}
 
+
+
 		{% endfor %}
-		
+
 		
 
-		</br></br>	
+		
+
+
+
+		</br></br>
+
+
 
 	<h2>Other Material</h2>
 
+
+
 		{% for i in items %}
+
 		{% if i.material == 'other' %}
 
+
+
 		<p>{{i.name}}</p>
+
 	
 
+
+
 		<p>{{i.description}}</p>
+
 	
+
+
 
 		<p>{{i.price}}</p>
 
 
+
+
+
 </br>
+
 </br>
+
 {% endif %}
 
+
+
 		{% endfor %}
+
 		
+
 		
+
+
 
 		{% else %}
 
+		<p> You currently have no Items. <p>
+
+
 
 			{% endif %}
-</div>
-  <td style='width: 76%'> 
-      
 
-
-      </div>    
-      </td>
-      <td style='width: 12%'></td>
-     </tr>
-    </table>
+ </td><td width=12%>
+  
   </td>
- 
- </tr>
-</table>
+
+
+      </div>
+  </tr>
+
 
 </body>
 </html>

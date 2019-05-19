@@ -29,7 +29,7 @@ print(CLIENT_ID)
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine("sqlite:///catalog.db?check_same_thread=False")
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -67,7 +67,7 @@ def showAuthCategories():
     
     #latestItems = conn.execute(select([Item.name])).scalar()
     latestItems = session.query((select([Item.name]).order_by((Item.name).desc()).limit(10))).all()
-    return render_template('categoriesauth.html',latestItems=latestItems,categories=categories)	
+    return render_template('categoriesAuth.html',latestItems=latestItems,categories=categories,login_session=login_session)	
 
 # Show all categories
 @app.route('/')
@@ -78,7 +78,7 @@ def showCategories():
     
     #latestItems = conn.execute(select([Item.name])).scalar()
     latestItems = session.query((select([Item.name]).order_by((Item.name).desc()).limit(10))).all()
-    return render_template('categories.html',latestItems=latestItems,categories=categories)
+    return render_template('categories.html',latestItems=latestItems,categories=categories, login_session=login_session)
 
 # Create a new category
 @app.route('/categoryauth/new/', methods=['GET', 'POST'])
@@ -193,7 +193,8 @@ def login():
 @app.route('/logout')
 def logout():
   print(type(login_session))
-  del login_session["username"]
+  if "username" in login_session:
+      del login_session["username"]
   return render_template('logout.html')
 
 
