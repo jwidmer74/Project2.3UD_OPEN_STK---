@@ -1,43 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!--google -->
   <script src="//apis.google.com/js/platform.js?onload=init" async defer></script>`
-  <!--
-  <meta name="google-signin-client_id"
-    content="759306340031-p8a40fq9t90jfrhiqpe72t8r2v01s8rl.apps.googleusercontent.com">
--->
 </head>
-
 <body>
   <div class="header">
     <a href="#default" class="logo">Catalog App</a>
-
     <div class="header-right">
       <br />
-
       <a class="active" href="{{url_for('logout')}}">Logout</a>
-
     </div>
   </div>
   <br />
   <br />
-
   <table id="big" style='width: 100%'>
     <tr>
       <td width=12%></td><br />
       <td class="rightPanel">
         <h1> Edit Item </h1>
-
         <form action="#" method='post'>
-
-
           <p>Name:</p>
           <input type='text' size='30' name='name' placeholder='{{item.name }}'>
           <p>Description:</p>
@@ -45,55 +30,34 @@
           <p>Price:</p>
           <input type='text' size='30' name='price' placeholder='{{item.price}}'>
           <p>material:<p>
-
               {% if item.material == 'net' %}
               <dd><input type='radio' name='material' value='net' checked>net</dd>
               {%else%}
               <dd><input type='radio' name='material' value='net'>net</dd>
               {% endif %}
-
               {% if item.material == 'backboard' %}
               <dd><input type='radio' name='material' value='backboard' checked>backboard</dd>
-
               {%else%}
               <dd><input type='radio' name='material' value='backboard'>backboard</dd>
               {% endif %}
-
               {% if item.material == 'stick'%}
               <dd><input type='radio' name='material' value='stick' checked>stick</dd>
-
               {% else %}
               <dd><input type='radio' name='material' value='stick'>stick</dd>
-
               {% endif %}
-
-
               {%if item.material =='Googles'%}
               <dd><input type='radio' name='material' value='Googles' checked>Googles</dd>
               {% else %}
               <dd><input type='radio' name='material' value='Googles'>Googles</dd>
               {% endif %}
-
-
-
               <input type='submit' value='Edit'>
-
-
               <a href='#'> Cancel </a>
-
-
         </form>
         </div>
       </td>
       <td width=12%>
-
       </td>
-
-
       </div>
     </tr>
-
-
 </body>
-
 </html>

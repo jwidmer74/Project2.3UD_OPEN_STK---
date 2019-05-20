@@ -1,70 +1,45 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
   <div class="header">
     <a href="#default" class="logo">Catalog App</a>
-
     <div class="header-right">
       <br />
-
       <a class="active" href="{{url_for('logout')}}">Logout</a>
-
     </div>
   </div>
   <br />
   <br />
-
   <table id="big" style='width: 100%'>
     <tr>
       <td width=12%></td><br />
       <td class="rightPanel">
         <div>
           <h2>Categories</h2>
-
-
           <a href="{{url_for('newCategory')}}">
             <h3> Create a New Category </h3>
           </a>
-
           {% for category in categories %}
-
-
-
           <a href="{{url_for('showMenuAuth', category_id = category.id)}}">
             <p>{{category.name}}</p>
           </a>
-
           <p><a href="{{url_for('editCategory',category_id = category.id)}}">Edit Category</a></p>
-
           <p> <a href="{{url_for('deleteCategory',category_id = category.id)}}">Delete Category</a> </p>
-
-
-
-
           {% endfor %}
       </td>
       <td><br />
       <td class="leftPanel">
         <h2>Latest Items</h2>
-
         {% for item in latestItems%}
         <p>{{item.name}}</p>
         {% endfor %}
       </td>
       <td width=12%>
-
       </td>
-
-
       </div>
     </tr>
-
-
 </body>
-
 </html>
