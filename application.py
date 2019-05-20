@@ -62,6 +62,8 @@ def categoriesJSON():
 	
 @app.route('/categoryauth/')
 def showAuthCategories():
+    if "username" not in login_session:
+        return redirect('/login')
     categories = session.query(Category).all()
     conn = engine.connect()
     
@@ -97,6 +99,8 @@ def newCategory():
 
 @app.route('/categoryauth/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
+    if "username" not in login_session:
+        return redirect('/login')
     editedCategory = session.query(Category).filter_by(id=category_id).one()
     if request.method == 'POST':
         if request.form['name']:
@@ -114,6 +118,8 @@ def editCategory(category_id):
 
 @app.route('/categoryauth/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
+    if "username" not in login_session:
+        return redirect('/login')
     categoryToDelete = session.query(Category).filter_by(id=category_id).one()
     if request.method == 'POST':
         session.delete(categoryToDelete)
@@ -129,6 +135,8 @@ def deleteCategory(category_id):
 @app.route('/categoryauth/<int:category_id>/')
 @app.route('/categoryauth/<int:category_id>/menu/')
 def showMenuAuth(category_id):
+    if "username" not in login_session:
+        return redirect('/login')
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(category_id=category_id).all()
     return render_template('menuAuth.html', items=items, category=category)
@@ -147,6 +155,8 @@ def showMenu(category_id):
 
 @app.route('/categoryauth/<int:category_id>/menu/new/', methods=['GET', 'POST'])
 def newItem(category_id):
+    if "username" not in login_session:
+        return redirect('/login')
     if request.method == 'POST':
         newItem = Item(name=request.form['name'], description=request.form['description'], price=request.form['price'], material=request.form['material'], category_id=category_id)
         session.add(newItem)
@@ -166,6 +176,8 @@ def newItem(category_id):
 @app.route('/categoryauth/<int:category_id>/menu/<int:menu_id>/edit',
            methods=['GET', 'POST'])
 def editItem(category_id, menu_id):
+    if "username" not in login_session:
+        return redirect('/login')
     editedItem = session.query(Item).filter_by(id=menu_id).one()
     if request.method == 'POST':
         if request.form['name']:

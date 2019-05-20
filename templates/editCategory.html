@@ -9,54 +9,56 @@
 
   <!--google -->
   <script src="//apis.google.com/js/platform.js?onload=init" async defer></script>`
-<!--
+  <!--
   <meta name="google-signin-client_id"
     content="759306340031-p8a40fq9t90jfrhiqpe72t8r2v01s8rl.apps.googleusercontent.com">
 -->
 </head>
+
 <body>
-<div class="header">
-  <a href="#default" class="logo">Catalog App</a>
- 
-  <div class="header-right">
-    <br/>
- 
-    <a class="active" href="{{url_for('login')}}">Login</a>
-   
+  <div class="header">
+    <a href="#default" class="logo">Catalog App</a>
+
+    <div class="header-right">
+      <br />
+
+      <a class="active" href="{{url_for('logout')}}">Logout</a>
+
+    </div>
   </div>
-</div>
-<br/>
-<br/>
+  <br />
+  <br />
 
-<table id="big" style='width: 100%'>
- <tr>
- <td width= 12%></td><br/>
-  <td class="rightPanel">
-	  <h1> Edit Category </h1>
-
-
-<form action="{{ url_for('editCategory',category_id = category.id)}}" method = 'post'>
+  <table id="big" style='width: 100%'>
+    <tr>
+      <td width=12%></td><br />
+      <td class="rightPanel">
+        <h1> Edit Category </h1>
 
 
-	<p>Name:</p>
-		<input type ='text' size='30' name='name' placeholder = '{{category.name }}'>
+        <form action="{{ url_for('editCategory',category_id = category.id)}}" method='post'>
 
 
-<input type='submit' value='Edit'>
+          <p>Name:</p>
+          <input type='text' size='30' name='name' placeholder='{{category.name }}'>
 
 
-<a href = '{{url_for('showCategories')}}'> Cancel </a>
+          <input type='submit' value='Edit'>
 
-</div>
-    </td><td width=12%>
-  
-  </td>
+
+          <a href='{{url_for('showCategories')}}'> Cancel </a>
+
+          </div>
+      </td>
+      <td width=12%>
+
+      </td>
 
 
       </div>
-  </tr>
+    </tr>
 
 
 </body>
-</html>
 
+</html>
