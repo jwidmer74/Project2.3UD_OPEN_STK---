@@ -25,13 +25,13 @@
         </div>
         <br />
         <br />
-        <h1>Sign with your Google Account</h1>
+        <h1>Sign in with your Google Account</h1>
         <button class="g-signin2" id="signinButton">Sign in with Google</button>
         <script>
           function init() {
             gapi.load('auth2', function () {
               auth2 = gapi.auth2.init({
-                client_id: '668549381288-72cm321dq07ogp784qslisimnhq9rsi1.apps.googleusercontent.com',
+                client_id: '00000000000000000000000.apps.googleusercontent.com',
               });
               $("#signinButton").click(function () {
                 auth2.grantOfflineAccess({ 'redirect_uri': 'postmessage' }).then(offlineAccess);

@@ -1,4 +1,3 @@
-#! /usr/lib/python2.7 python
 from flask import Flask, render_template, request, redirect,\
     jsonify, url_for, flash
 import uuid
@@ -26,26 +25,22 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-
 @app.route('/category/<int:category_id>/menu/JSON')
 def categoryMenuJSON(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(category_id=category_id).all()
     return jsonify(Items=[i.serialize for i in items])
-
-
+	
 @app.route('/category/<int:category_id>/menu/<int:menu_id>/JSON')
 def itemJSON(category_id, menu_id):
     Item = session.query(Item).filter_by(id=menu_id).one()
     return jsonify(Item=Item.serialize)
-
-
+	
 @app.route('/category/JSON')
 def categoriesJSON():
     categories = session.query(Category).all()
     return jsonify(categories=[r.serialize for r in categories])
-
-
+	
 @app.route('/categoryauth/')
 def showAuthCategories():
     if "username" not in login_session:
@@ -61,7 +56,6 @@ def showAuthCategories():
         login_session=login_session)
 # Show all categories
 
-
 @app.route('/')
 @app.route('/category/')
 def showCategories():
@@ -76,7 +70,6 @@ def showCategories():
         login_session=login_session)
 # Create a new category
 
-
 @app.route('/categoryauth/new/', methods=['GET', 'POST'])
 def newCategory():
     if request.method == 'POST':
@@ -88,7 +81,6 @@ def newCategory():
         return render_template('newCategory.html')
 # return "This page will be for making a new category"
 # Edit a category
-
 
 @app.route('/categoryauth/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
@@ -106,7 +98,6 @@ def editCategory(category_id):
 # return 'This page will be for editing category %s' % category_id
 # Delete a category
 
-
 @app.route('/categoryauth/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
     if "username" not in login_session:
@@ -122,7 +113,6 @@ def deleteCategory(category_id):
             'deleteCategory.html', category=categoryToDelete)
 # Show a category menu
 
-
 @app.route('/categoryauth/<int:category_id>/')
 @app.route('/categoryauth/<int:category_id>/menu/')
 def showMenuAuth(category_id):
@@ -132,16 +122,14 @@ def showMenuAuth(category_id):
     items = session.query(Item).filter_by(category_id=category_id).all()
     return render_template('menuAuth.html', items=items, category=category)
 # Show a category menu
-
-
 @app.route('/category/<int:category_id>/')
 @app.route('/category/<int:category_id>/menu/')
+
 def showMenu(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(category_id=category_id).all()
     return render_template('menu.html', items=items, category=category)
-
-
+	
 @app.route(
     '/categoryauth/<int:category_id>/menu/new/',
     methods=[
@@ -163,8 +151,7 @@ def newItem(category_id):
     else:
         return render_template('newItem.html', category_id=category_id)
     return render_template('newItem.html', category=category)
-
-
+	
 @app.route('/categoryauth/<int:category_id>/menu/<int:menu_id>/edit',
            methods=['GET', 'POST'])
 def editItem(category_id, menu_id):
@@ -189,23 +176,20 @@ def editItem(category_id, menu_id):
             category_id=category_id,
             menu_id=menu_id,
             item=editedItem)
-
-
+			
 @app.route('/login')
 def login():
     state = uuid.uuid4()
     login_session['state'] = unicode(str(state), 'utf-8')
     return render_template('login.html', state=state)
-
-
+	
 @app.route('/logout')
 def logout():
     print(type(login_session))
     if "username" in login_session:
         del login_session["username"]
     return render_template('logout.html')
-
-
+	
 @app.route('/gconnect', methods=["POST"])
 def gconnect():
     print(request.args.get("state"), "==", login_session["state"])
@@ -270,13 +254,11 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += (' " style = "width: 300px; height: 300px;border-radius:150px;\
-	-webkit-border-radius: 150px;-moz-border-radius: 150px;"> ')
+    output += ' " style = "width: 300px; height: 300px;border-radius:150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 # Delete a menu item
-
 
 @app.route(
     '/categoryauth/<int:category_id>/menu/<int:menu_id>/delete',
@@ -291,8 +273,6 @@ def deleteItem(category_id, menu_id):
         return redirect(url_for('showMenu', category_id=category_id))
     else:
         return render_template('deleteItem.html', item=itemToDelete)
-
-
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
