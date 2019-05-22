@@ -31,7 +31,7 @@
           function init() {
             gapi.load('auth2', function () {
               auth2 = gapi.auth2.init({
-                client_id: '00000000000000000000000.apps.googleusercontent.com',
+                client_id: '778549381288-qdlijd55mttsa77d20acir1lredah523.apps.googleusercontent.com',
               });
               $("#signinButton").click(function () {
                 auth2.grantOfflineAccess({ 'redirect_uri': 'postmessage' }).then(offlineAccess);

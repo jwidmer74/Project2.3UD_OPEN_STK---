@@ -24,33 +24,47 @@ session.add(category1)
 session.commit()
 
 Item2 = Item(name="net", description="AmazonBasics Soccer Goal",
-                     price="$15.50",material="other", category=category1)
+             price="$15.50", material="other", category=category1)
 
 session.add(Item2)
 session.commit()
 
 
-Item1 = Item(name="backboard", description="JAPER BEES Mini PRO Over The Door & Wall Mount Basketball Hoop w/Thick Shatterproof Backboard ",
-                     price="$50.50",material="plastic", category=category1)
+Item1 = Item(
+    name="backboard",
+    description=("JAPER BEES Mini PRO Over The Door & Wall Mount Basketball
+                 Hoop w / Thick Shatterproof Backboard"),
+    price="$50.50",
+    material="plastic",
+    category=category1)
 
 session.add(Item1)
 session.commit()
-
 
 
 category2 = Category(name="Basketball")
 session.add(category2)
 session.commit()
 
-Item2 = Item(name="basketball", description="Spalding NBA Indoor/Outdoor Replica Game Ball",
-                     price="$6.50",material="other", category=category2)
+Item2 = Item(
+    name="basketball",
+    description="Spalding NBA Indoor/Outdoor Replica Game Ball",
+    price="$6.50",
+    material="other",
+    category=category2)
 
 session.add(Item2)
 session.commit()
 
 
-Item1 = Item(name="Googles", description="COPOZZ Ski Goggles, G1 OTG Snowboard Snow Goggles for Men Women Youth Anti-Fog UV Protection, Polarized Lens Available",
-                     price="$10.50",material="plastic", category=category2)
+Item1 = Item(
+    name="Googles",
+    description=("COPOZZ Ski Goggles, G1 OTG Snowboard Snow Goggles for Men
+                 Women Youth Anti - Fog UV Protection, Polarized Lens
+                 Available"),
+    price="$10.50",
+    material="plastic",
+    category=category2)
 
 session.add(Item1)
 session.commit()
@@ -61,14 +75,18 @@ session.add(category3)
 session.commit()
 
 Item2 = Item(name="bat", description="Cold Steel Brooklyn Smasher ",
-                     price="$4.50",material="metal", category=category3)
+             price="$4.50", material="metal", category=category3)
 
 session.add(Item2)
 session.commit()
 
 
-Item1 = Item(name="glove", description="Wilson A2000 SuperSkin Baseball Glove Series ",
-                     price="$25.50",material="other", category=category3)
+Item1 = Item(
+    name="glove",
+    description="Wilson A2000 SuperSkin Baseball Glove Series ",
+    price="$25.50",
+    material="other",
+    category=category3)
 
 session.add(Item1)
 session.commit()
@@ -79,14 +97,19 @@ session.add(category4)
 session.commit()
 
 Item2 = Item(name="Frisbee Net", description="Champion Sports Disc Target Net",
-                     price="$8.50",material="metal", category=category4)
+             price="$8.50", material="metal", category=category4)
 
 session.add(Item2)
 session.commit()
 
 
-Item1 = Item(name="Signed Frisbee", description="Casey Stengel PSA DNA Autograph Twice Signed Disc Authenticated ",
-                     price="$15.50",material="plastic", category=category4)
+Item1 = Item(
+    name="Signed Frisbee",
+    description=("Casey Stengel PSA DNA Autograph
+                 Twice Signed Disc Authenticated"),
+    price="$15.50",
+    material="plastic",
+    category=category4)
 
 session.add(Item1)
 session.commit()
@@ -96,17 +119,21 @@ category5 = Category(name="Snowboarding")
 session.add(category5)
 session.commit()
 
-Item2 = Item(name="Snow Board gooogles", description="Revo RG 7008 Wordsmith Polarized Ski Goggles ",
-                     price="$5.50",material="plastic", category=category5)
+Item2 = Item(
+    name="Snow Board gooogles",
+    description="Revo RG 7008 Wordsmith Polarized Ski Goggles",
+    price="$5.50",
+    material="plastic",
+    category=category5)
 
 session.add(Item2)
 session.commit()
 
 
-Item1 = Item(name="Snowboards", description="Ride Manic Snowboard Mens ",
-                     price="$115.50",material="plastic", category=category5)
+Item1 = Item(name="Snowboards", description="Ride Manic Snowboard Mens",
+             price="$115.50", material="plastic", category=category5)
 
 session.add(Item1)
 session.commit()
 
-print "added items!"
+print"added items!"
